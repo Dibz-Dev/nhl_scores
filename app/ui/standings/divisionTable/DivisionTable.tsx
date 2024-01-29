@@ -9,16 +9,17 @@ interface DivisionTableProps {
   data: DivType;
 }
 
+export const divisionColumns: ColumnDef<StandingsColumns>[] = (
+  [] as ColumnDef<StandingsColumns>[]
+).concat(
+  {
+    header: "Rank",
+    accessorKey: "divisionSequence",
+  },
+  ...standingsColumns
+);
+
 export const DivisionTable = ({ data }: DivisionTableProps) => {
-  const divisionColumns: ColumnDef<StandingsColumns>[] = (
-    [] as ColumnDef<StandingsColumns>[]
-  ).concat(
-    {
-      header: "Rank",
-      accessorKey: "divisionSequence",
-    },
-    ...standingsColumns
-  );
   return (
     <div className="flex flex-col gap-y-8 text-black">
       <div>

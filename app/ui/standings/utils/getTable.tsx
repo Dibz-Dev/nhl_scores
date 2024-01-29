@@ -19,8 +19,8 @@ export const getTable = (
       return <DivisionTable data={divisionTransformer(data)} />;
     case "Conference":
       return <ConferenceTable data={conferenceTransformer(data)} />;
-    // case "Wildcard":
-    //   return <WildcardTable data={wildcardTransformer(data)} />;
+    case "Wildcard":
+      return <WildcardTable data={wildcardTransformer(data)} />;
     default:
       return <></>;
   }
