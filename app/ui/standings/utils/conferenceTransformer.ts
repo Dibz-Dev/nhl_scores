@@ -1,13 +1,15 @@
-import { StandingsColumns, TeamStandings } from "@/app/lib/services/teams";
+import { StandingsColumns } from "@/app/lib/services/teams";
 
 export interface ConferenceType {
   eastern: StandingsColumns[];
   western: StandingsColumns[];
 }
 
-export const conferenceTransformer = (data: TeamStandings): ConferenceType => {
+export const conferenceTransformer = (
+  data: StandingsColumns[]
+): ConferenceType => {
   return {
-    eastern: data.standings.filter((team) => team.conferenceName === "Eastern"),
-    western: data.standings.filter((team) => team.conferenceName === "Western"),
+    eastern: data.filter((team) => team.conferenceName === "Eastern"),
+    western: data.filter((team) => team.conferenceName === "Western"),
   };
 };

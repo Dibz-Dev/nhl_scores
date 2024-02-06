@@ -1,5 +1,8 @@
 "use client";
 
+import classNames from "classnames";
+import { useState } from "react";
+
 const tabs = ["League", "Conference", "Division", "Wildcard"] as const;
 
 interface TabsProps {
@@ -7,12 +10,25 @@ interface TabsProps {
 }
 
 export const Tabs = ({ getTable }: TabsProps) => {
+  const [isActive, setIsActive] = useState("League");
   return (
-    <div className="flex gap-10 text-xl py-6">
+    <div className="flex gap-10 text-xl pl-4 pt-6 mb-5 border-b">
       {tabs.map((tab) => (
-        <div className="cursor-pointer" key={tab}>
-          <h1>
-            <button onClick={() => getTable(tab)}>{tab}</button>
+        <div
+          className={classNames(`cursor-pointer font-thin`, {
+            "border-b-2 font-semibold": isActive === tab,
+          })}
+          key={tab}
+        >
+          <h1 className="text-sm">
+            <button
+              onClick={() => {
+                setIsActive(tab);
+                getTable(tab);
+              }}
+            >
+              {tab}
+            </button>
           </h1>
         </div>
       ))}

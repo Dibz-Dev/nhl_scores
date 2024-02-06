@@ -9,13 +9,11 @@ export const Standings = () => {
 
   const [table, setTable] = useState("League");
   const Table = data && getTable(table, data);
+  console.log(data);
   return (
     <div className="w-full">
       <Tabs getTable={setTable} />
-      <div className="bg-white rounded-lg">
-        {/* <h2 className="text-black text-3xl py-6 px-4 font-bold">{table}</h2> */}
-        {Table}
-      </div>
+      <div className="bg-white rounded-lg">{Table}</div>
     </div>
   );
 };

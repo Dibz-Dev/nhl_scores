@@ -1,4 +1,4 @@
-import { StandingsColumns, TeamStandings } from "@/app/lib/services/teams";
+import { StandingsColumns } from "@/app/lib/services/teams";
 import { DivType } from "./divisionTransformer";
 
 const sections = ["wildcardEast", "wildcardWest"] as const;
@@ -6,24 +6,24 @@ export type WildcardType = DivType & {
   [Property in (typeof sections)[number]]: StandingsColumns[];
 };
 
-export const wildcardTransformer = (data: TeamStandings): WildcardType => {
+export const wildcardTransformer = (data: StandingsColumns[]): WildcardType => {
   return {
-    metropolitan: data.standings.filter(
+    metropolitan: data.filter(
       (div) => div.divisionName === "Metropolitan" && div.divisionSequence <= 3
     ),
-    atlantic: data.standings.filter(
+    atlantic: data.filter(
       (div) => div.divisionName === "Atlantic" && div.divisionSequence <= 3
     ),
-    wildcardEast: data.standings.filter(
+    wildcardEast: data.filter(
       (div) => div.conferenceName === "Eastern" && div.wildcardSequence
     ),
-    pacific: data.standings.filter(
+    pacific: data.filter(
       (div) => div.divisionName === "Pacific" && div.divisionSequence <= 3
     ),
-    central: data.standings.filter(
+    central: data.filter(
       (div) => div.divisionName === "Central" && div.divisionSequence <= 3
     ),
-    wildcardWest: data.standings.filter(
+    wildcardWest: data.filter(
       (div) => div.conferenceName === "Western" && div.wildcardSequence
     ),
   };

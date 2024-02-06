@@ -1,3 +1,4 @@
+import { Navbar } from "./ui/Navbar/Navbar";
 import { Standings } from "./ui/standings";
 
 export default function Home() {

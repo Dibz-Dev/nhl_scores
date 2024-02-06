@@ -1,12 +1,13 @@
-import { StandingsColumns, TeamStandings } from "@/app/lib/services/teams";
-import { Row, createColumnHelper } from "@tanstack/react-table";
+import { StandingsColumns } from "@/app/lib/services/teams";
+import { createColumnHelper } from "@tanstack/react-table";
+import classNames from "classnames";
 
 const columnHelper = createColumnHelper<StandingsColumns>();
 export const standingsColumns = [
-  columnHelper.display({
+  {
     header: "Team",
-    cell: (props) => <div>{props.row.original.teamName.default}</div>,
-  }),
+    accessorKey: "teamName",
+  },
   {
     header: "GP",
     accessorKey: "gamesPlayed",
@@ -29,7 +30,7 @@ export const standingsColumns = [
   },
   {
     header: "P%",
-    accessorKey: "pointPctg",
+    accessorKey: "pointsPctg",
   },
   {
     header: "RW",
@@ -41,34 +42,43 @@ export const standingsColumns = [
   },
   {
     header: "GF",
-    accessorKey: "goalFor",
+    accessorKey: "goalsFor",
   },
   {
     header: "GA",
-    accessorKey: "goalAgainst",
+    accessorKey: "goalsAgainst",
   },
-  {
+  columnHelper.display({
     header: "Diff",
-    accessorKey: "goalDifferential",
-  },
+    cell: (props) => {
+      const diff = props.row.original.goalDiff;
+      return (
+        <div
+          className={classNames("text-green-600", { "text-red-600": diff < 0 })}
+        >
+          {props.row.original.goalDiff}
+        </div>
+      );
+    },
+  }),
   {
     header: "Home",
-    accessorKey: "homeWins",
+    accessorKey: "homeRecordl10",
   },
   {
     header: "Away",
-    accessorKey: "roadWins",
+    accessorKey: "roadRecordl10",
   },
   {
     header: "S/O",
-    accessorKey: "shootoutWins",
+    accessorKey: "so",
   },
   {
     header: "L10",
-    accessorKey: "l10Wins", //Update with l10 transformer
+    accessorKey: "l10",
   },
   {
     header: "Strk",
-    accessorKey: "streakCount", //update with streakCount + streakCode
+    accessorKey: "strk",
   },
 ];
