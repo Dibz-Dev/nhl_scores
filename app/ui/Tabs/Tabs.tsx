@@ -16,7 +16,7 @@ export const Tabs = ({ getTable }: TabsProps) => {
       {tabs.map((tab) => (
         <div
           className={classNames(`cursor-pointer font-thin`, {
-            "border-b-2 font-semibold": isActive === tab,
+            "border-b-2 font-medium": isActive === tab,
           })}
           key={tab}
         >
